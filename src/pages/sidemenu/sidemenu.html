@@ -1,0 +1,21 @@
+
+<ion-menu [content]="content" [persistent]="true">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>ServiceONE</ion-title>
+
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of this.pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+<!-- main navigation -->
+<ion-nav [root]="rootPage" #content></ion-nav>
