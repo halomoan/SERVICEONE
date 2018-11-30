@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController, LoadingController, Loading  } from 'ionic-angular';
-import { HomePage } from '../home/home';
+import { SidemenuPage } from '../sidemenu/sidemenu';
 /**
  * Generated class for the LoginPage page.
  *
@@ -27,7 +27,7 @@ export class LoginPage {
   }
 
   login() {
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(SidemenuPage);
   }
 
 

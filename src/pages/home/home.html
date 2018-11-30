@@ -1,21 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
 
-<ion-menu [content]="content" [persistent]="true">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>ServiceONE</ion-title>
+<ion-content padding>
+  <h3>Ionic Menu Starter</h3>
 
-    </ion-toolbar>
-  </ion-header>
+  <p>
+    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
+  </p>
 
-  <ion-content>
-
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of this.pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
-  </ion-content>
-
-</ion-menu>
-<!-- main navigation -->
-<ion-nav [root]="rootPage" #content></ion-nav>
+  <button ion-button secondary menuToggle>Toggle Menu</button>
+</ion-content>
