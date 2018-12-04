@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController, LoadingController, Loading  } from 'ionic-angular';
 import { SidemenuPage } from '../sidemenu/sidemenu';
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { HttpClient } from '@angular/common/http';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+
 
 @IonicPage()
 @Component({
@@ -16,9 +13,13 @@ import { SidemenuPage } from '../sidemenu/sidemenu';
 export class LoginPage {
 
   loading: Loading;
-  registerCredentials = { email: '', password: '' };
+  registerCredentials = { soneid: '', uuid: '' };
+  authenticated = false;
 
-  constructor(public navCtrl: NavController, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController,
+              private auth: AuthServiceProvider,
+              private alertCtrl: AlertController,
+              private loadingCtrl: LoadingController) {
 
   }
 
@@ -26,8 +27,37 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  login() {
-    this.navCtrl.setRoot(SidemenuPage);
+  public login() {
+    this.showLoading()
+    this.auth.login(this.registerCredentials).subscribe(allowed => {
+        if (allowed) {
+          this.navCtrl.setRoot(SidemenuPage);
+        } else {
+          this.showError("These credentials do not match our records.");
+        }
+      },
+      error => {
+        this.showError(error);
+      });
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
+  }
+
+  showError(text) {
+    this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      title: 'Fail',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 

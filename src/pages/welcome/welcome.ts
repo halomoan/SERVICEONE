@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
+import { SettingsPage } from '../settings/settings';
 
 /**
  * Generated class for the WelcomePage page.
@@ -16,7 +17,7 @@ import { LoginPage } from '../login/login';
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController) {
   }
 
   ionViewDidLoad() {
@@ -27,7 +28,7 @@ export class WelcomePage {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     //this.navCtrl.push(LoginPage, {}, {animate: false});
-    this.navCtrl.setRoot(LoginPage);
+    this.navCtrl.setRoot(SettingsPage);
   }
 
 }

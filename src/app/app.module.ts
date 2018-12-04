@@ -10,6 +10,12 @@ import { HomePage } from '../pages/home/home';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { MyworksPage } from '../pages/myworks/myworks';
 import { LoginPage } from '../pages/login/login';
+import { SettingsPage } from '../pages/settings/settings';
+import { InterceptorProvider } from '../providers/interceptor/interceptor';
+import { IonicStorageModule } from '@ionic/storage';
+import { Network } from '@ionic-native/network/ngx';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 @NgModule({
   declarations: [
@@ -18,11 +24,14 @@ import { LoginPage } from '../pages/login/login';
     SidemenuPage,
     LoginPage,
     HomePage,
+    SettingsPage,
     MyworksPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -30,13 +39,17 @@ import { LoginPage } from '../pages/login/login';
     WelcomePage,
     SidemenuPage,
     LoginPage,
+    SettingsPage,
     HomePage,
     MyworksPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorProvider, multi: true},
+    Network,
+    AuthServiceProvider
   ]
 })
 export class AppModule {}
