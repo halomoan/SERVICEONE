@@ -14,15 +14,18 @@
 
 
 <ion-content>
+  <form (ngSubmit)="saveData()">
   <ion-list>
     <ion-item-divider color="light">SERVER</ion-item-divider>
     <ion-item>
       <ion-label color="primary">Host</ion-label>
-      <ion-input placeholder="serviceone.com"></ion-input>
+      <ion-input placeholder="serviceone.com" [(ngModel)]="data.host"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Port</ion-label>
-      <ion-input placeholder="8100" maxlength="4"></ion-input>
+      <ion-input placeholder="8100" maxlength="4" [(ngModel)]="data.port"></ion-input>
     </ion-item>
   </ion-list>
+    <button ion-button type="submit" block>Save Data</button>
+  </form>
 </ion-content>

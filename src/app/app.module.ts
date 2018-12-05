@@ -12,8 +12,9 @@ import { MyworksPage } from '../pages/myworks/myworks';
 import { LoginPage } from '../pages/login/login';
 import { SettingsPage } from '../pages/settings/settings';
 import { InterceptorProvider } from '../providers/interceptor/interceptor';
+import { SQLite } from '@ionic-native/sqlite';
 import { IonicStorageModule } from '@ionic/storage';
-import { Network } from '@ionic-native/network/ngx';
+import { Network } from '@ionic-native/network';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
@@ -48,6 +49,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorProvider, multi: true},
+    SQLite,
     Network,
     AuthServiceProvider
   ]
